@@ -1,0 +1,68 @@
+﻿<Window x:Class="Culkul.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Culkul"
+        mc:Ignorable="d"
+        Title="Кулёк" Height="105" Width="196" Background="#FF202020" BorderBrush="#FF3B3B3B" Foreground="#FF383838" ResizeMode="NoResize" WindowStyle="None"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#FF323232"/>
+            <Setter Property="BorderBrush" Value="#FF202020"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="BorderThickness" Value="0,0,0,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="2,2,2,2"/>
+        </Style>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FF838383"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FF838383"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FF838383"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsDefaulted" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <UniformGrid x:Name="ButtonsStack" Rows="2" Columns="3" Background="#FF202020">
+            <Button Template="{DynamicResource ButtonTemplate}" Style="{StaticResource ButtonStyle}" Content="sin" x:Name="sin" Click="sin_Click"/>
+            <Button Template="{DynamicResource ButtonTemplate}" Style="{StaticResource ButtonStyle}" Content="cos" x:Name="cos" Click="cos_Click"/>
+            <Button Template="{DynamicResource ButtonTemplate}" Style="{StaticResource ButtonStyle}" Content="tan" x:Name="tan" Click="tan_Click"/>
+            <Button Template="{DynamicResource ButtonTemplate}" Style="{StaticResource ButtonStyle}" Content="sin⁻¹" x:Name="arcsin" Click="arcsin_Click"/>
+            <Button Template="{DynamicResource ButtonTemplate}" Style="{StaticResource ButtonStyle}" Content="cos⁻¹" x:Name="arccos" Click="arccos_Click"/>
+            <Button Template="{DynamicResource ButtonTemplate}" Style="{StaticResource ButtonStyle}" Content="tan⁻¹" x:Name="arctan" Click="arctan_Click"/>
+        </UniformGrid>
+    </Grid>
+</Window>
